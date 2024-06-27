@@ -35,6 +35,10 @@ import { Restaurante_formComponent } from './modules/restaurante_form/restaurant
 import {MatDialogModule} from '@angular/material/dialog';
 import { EstadoPipe } from './Model/EstadoPipe';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+
 
 
 
@@ -74,11 +78,14 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatPaginatorModule,
     MatDialogModule,
     MatSlideToggleModule,
-    
-    
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSortModule,
+  
 
   ],
   exports:[EstadoPipe],
+  providers:[MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

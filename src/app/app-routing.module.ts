@@ -19,11 +19,10 @@ const routes: Routes = [
       {path:'registrarRoles',                     component : VerRolesComponent},
     ]
   },
-  {path:'home/pedidos',                       component: ProveedorComponent,
+  {path:'home/pedidos',                       component : HomeComponent,
     children : [
       //{path:'/registrar_menu'},
       {path:'pedido',                         component:PedidoComponent},
-      
       {path:'consultarPedidos', component:ConsultarPedidosComponent},
     ]
   },

@@ -8,9 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-navigateToRegistrarRol() {
-  this.router.navigate(["home/seguridad/registrarRoles"]);
-}
+
 
   constructor(private router:Router, private _loginService:LoginService) { }
 
@@ -28,4 +26,12 @@ navigateToRegistrarRol() {
     this.router.navigate(["home/pedidos"]);
   }
   
+
+  navigateHistorialPedido() {
+    this.router.navigate(["home/pedidos/consultarPedidos"]);
+  }
+  navigateToRegistrarRol() {
+    this.router.navigate(["home/seguridad/registrarRoles"]);
+  }
+
 }

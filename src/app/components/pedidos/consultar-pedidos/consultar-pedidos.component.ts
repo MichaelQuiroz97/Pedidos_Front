@@ -7,19 +7,20 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Pedidos } from 'src/app/interfaces/Pedidos';
 import { PedidosService } from 'src/app/services/Pedidos/pedidos.service';
+import { MatSort } from '@angular/material/sort';
 
 
-const MY_DATE_FORMATS = {
-  parse: {
-    dateInput: 'dd/MM/yyyy',
-  },
-  display: {
-    dateInput: 'dd/MM/yyyy',
-    monthYearLabel: 'MMM yyyy',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM yyyy',
-  },
-};
+// const MY_DATE_FORMATS = {
+//   parse: {
+//     dateInput: 'dd/MM/yyyy',
+//   },
+//   display: {
+//     dateInput: 'dd/MM/yyyy',
+//     monthYearLabel: 'MMM yyyy',
+//     dateA11yLabel: 'LL',
+//     monthYearA11yLabel: 'MMMM yyyy',
+//   },
+// };
 
 
 
@@ -32,12 +33,13 @@ export class ConsultarPedidosComponent implements OnInit {
   displayedColumns: string[] = ['fechaPedido', 'nombreUsuario', 'nombrePedido', 'precioProducto', 'cantidad'];
   dataSource = new MatTableDataSource<Pedidos>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   startDate: string = '';
   endDate: string = '';
 
-  constructor(private pedidosService: PedidosService, private dateAdapter: DateAdapter<Date>
-  ) {
-    this.dateAdapter.setLocale('es');
+  constructor(private pedidosService: PedidosService/*, private dateAdapter: DateAdapter<Date>*/ ) {
+    // this.dateAdapter.setLocale('es');
   }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class ConsultarPedidosComponent implements OnInit {
     this.pedidosService.getPedidos().subscribe(pedidos => {
       this.dataSource.data = pedidos;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort
     });
   }
 
