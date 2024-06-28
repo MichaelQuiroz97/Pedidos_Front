@@ -56,9 +56,6 @@ export class ConsultarPedidosComponent implements OnInit {
 
   applyFilter(): void {
     if (this.startDate && this.endDate) {
-      // const fechaInicio = new Date(this.startDate);
-      // fechaInicio.setDate(fechaInicio.getDate() - 1);
-      // const startDateString = fechaInicio.toISOString().split('T')[0];
       this.pedidosService.getPedidosByDateRange(this.startDate, this.endDate).subscribe(pedidos => {
         this.dataSource.data = pedidos;
       });

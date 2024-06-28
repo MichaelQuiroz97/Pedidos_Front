@@ -1,8 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Login_Usuario } from 'src/app/interfaces/Login_Usuario';
 import { LoginService } from 'src/app/services/login.service';
-
+import { jwtDecode } from 'jwt-decode';
+import { CookieService } from 'ngx-cookie-service';
+interface DecodedToken {
+  Rol: string;
+  userName: string;
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,28 +18,43 @@ export class LoginComponent{
 
   hide = true;
   form : FormGroup;
+  usuario!:Login_Usuario;
 
-  constructor(
-    private fb:FormBuilder,
-    private _loginService:LoginService,
-    private router:Router
-  ) {
+  constructor(private fb:FormBuilder, private _loginService:LoginService, private router:Router,
+    private cookieService:CookieService) {
     this.form = this.fb.group({
-      nombreUsuario : new FormControl ('',Validators.required),
-      clave : new FormControl ('',Validators.required)
+      Correo : new FormControl ('',Validators.required),
+      Contrasena : new FormControl ('',Validators.required)
+      
     })
    }
 
+   roleId!: string;
+  userName!: string;
+  cookieValue!: string;
 
-  onSubmit(){
-    /*this._loginService.login(this.form.value).subscribe(response =>{
-      console.log("Datos correctos");
-    }, error =>{
-      console.log("Datos incorrectos",error);
+   decryptedString!: Object ;
+   onSubmit(){
+    this.usuario=this.form.value;
+    this._loginService.login(this.form.value).subscribe(response =>{
+      // const decodedToken: DecodedToken = jwtDecode(response.data.token);
+      
+    // this.roleId = decodedToken.Rol;
+    // this.userName = decodedToken.userName;
+    this.cookieService.set('token',response.data.token,{
+      secure: true,
+      
     });
-    */
-    this.router.navigate(['/home/seguridad']);
-
+    this.cookieValue = this.cookieService.get('token');
+    console.log(this.cookieValue);
+    // console.log(decodedToken);
+      this.router.navigate(['/home/seguridad']);
+    });
+      
   }
+    
+ 
+
+  
 
 }
