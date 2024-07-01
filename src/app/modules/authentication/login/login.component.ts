@@ -5,10 +5,7 @@ import { Login_Usuario } from 'src/app/interfaces/Login_Usuario';
 import { LoginService } from 'src/app/services/login.service';
 import { jwtDecode } from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
-interface DecodedToken {
-  Rol: string;
-  userName: string;
-}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,13 +38,10 @@ export class LoginComponent{
       
     // this.roleId = decodedToken.Rol;
     // this.userName = decodedToken.userName;
-    this.cookieService.set('token',response.data.token,{
-      secure: true,
-      
-    });
-    this.cookieValue = this.cookieService.get('token');
-    console.log(this.cookieValue);
-    // console.log(decodedToken);
+    // this.cookieService.set('token',response.data.token,{
+    //   secure: true,
+    //   expires: new Date(Date.now()+360000),
+    // });
       this.router.navigate(['/home/seguridad']);
     });
       

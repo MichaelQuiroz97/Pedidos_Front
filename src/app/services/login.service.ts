@@ -16,10 +16,9 @@ myApiUrl="api/Login/IniciarSesion";
 constructor(private http:HttpClient, private router:Router ) { }
 
 
-  login(usuario:Login_Usuario):Observable<any>{
-    
-    return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, usuario);
-  }
+login(usuario:Login_Usuario): Observable<any> {
+  return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, usuario, { withCredentials: true });
+}
 
   // login(usuario:any):Observable<any>{
   //   const url = `${this.url}/validarLogin`; 
