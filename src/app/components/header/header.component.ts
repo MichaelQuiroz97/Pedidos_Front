@@ -7,7 +7,6 @@ import { TokenDecoderService } from 'src/app/services/Token/token-decoder.servic
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   NombreUsuario!: string;
 
   constructor(private tokenService: TokenDecoderService) { }

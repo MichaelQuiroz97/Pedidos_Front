@@ -12,15 +12,36 @@ interface DecodedToken {
   providedIn: 'root'
 })
 export class TokenDecoderService {
+  
   constructor(private cookieService: CookieService) { }
 
   obtainName(): string {
     const token = this.cookieService.get('token');
-    if (token) {
-      const decodedToken:DecodedToken = jwtDecode(token);
+    if (!token) {
+      return 'Unknown'; 
+    }
+    try {
+      const decodedToken: DecodedToken = jwtDecode(token);
       return decodedToken.Nombre;
-    } else {
-      return '';
+    } catch (error) {
+      console.error( error);
+      return 'Unknown'; 
     }
   }
+
+
+  obtainRol(): string {
+    const token = this.cookieService.get('token');
+    if (!token) {
+      return 'Unknown'; 
+    }
+    try {
+      const decodedToken: DecodedToken = jwtDecode(token);
+      return decodedToken.Rol;
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return 'Unknown'; 
+    }
+  }
+
 }

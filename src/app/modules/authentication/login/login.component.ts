@@ -38,10 +38,10 @@ export class LoginComponent{
       
     // this.roleId = decodedToken.Rol;
     // this.userName = decodedToken.userName;
-    // this.cookieService.set('token',response.data.token,{
-    //   secure: true,
-    //   expires: new Date(Date.now()+360000),
-    // });
+    this.cookieService.set('token',response.data.token,{
+      secure: true,
+      expires: new Date(Date.now()+360000),
+    });
       this.router.navigate(['/home/seguridad']);
     });
       

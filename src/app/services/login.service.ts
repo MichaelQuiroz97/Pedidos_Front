@@ -10,23 +10,19 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-myAppUrl = Enviroment.endpoint;
-myApiUrl="api/Login/IniciarSesion";
+  myAppUrl = Enviroment.endpoint;
+  myApiUrl = "api/Login/IniciarSesion";
 
-constructor(private http:HttpClient, private router:Router ) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 
-login(usuario:Login_Usuario): Observable<any> {
-  return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, usuario, { withCredentials: true });
-}
+  login(usuario: Login_Usuario): Observable<any> {
+    return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, usuario);
+  }
 
-  // login(usuario:any):Observable<any>{
-  //   const url = `${this.url}/validarLogin`; 
-  //   return this.http.post<any>(this.url,usuario);
-  // }
-    
 
-  logout(){
+
+  logout() {
     this.router.navigate(['/login']);
   }
 }
