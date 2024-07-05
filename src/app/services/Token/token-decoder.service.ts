@@ -18,14 +18,14 @@ export class TokenDecoderService {
   obtainName(): string {
     const token = this.cookieService.get('token');
     if (!token) {
-      return 'Unknown'; 
+      return 'Desconocido'; 
     }
     try {
       const decodedToken: DecodedToken = jwtDecode(token);
       return decodedToken.Nombre;
     } catch (error) {
       console.error( error);
-      return 'Unknown'; 
+      return 'Desconocido'; 
     }
   }
 
@@ -33,14 +33,14 @@ export class TokenDecoderService {
   obtainRol(): string {
     const token = this.cookieService.get('token');
     if (!token) {
-      return 'Unknown'; 
+      return 'Desconocido'; 
     }
     try {
       const decodedToken: DecodedToken = jwtDecode(token);
       return decodedToken.Rol;
     } catch (error) {
       console.error('Error decoding token:', error);
-      return 'Unknown'; 
+      return 'Desconocido'; 
     }
   }
 

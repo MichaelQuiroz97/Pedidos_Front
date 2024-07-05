@@ -15,6 +15,6 @@ export class AuthenticationService {
 
   compararTokens(tokenFrontend: string): Observable<boolean> {
   
-    return this.http.post<boolean>(`${this.myAppUrl}/${this.myApiUrl}`, tokenFrontend);
+    return this.http.post<boolean>(`${this.myAppUrl}${this.myApiUrl}`, tokenFrontend);
   }
 }
